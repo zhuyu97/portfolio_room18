@@ -1,5 +1,6 @@
 package com.room18.stock.controller;
 
+import com.room18.common.R;
 import com.room18.stock.entity.StockDetail;
 import com.room18.stock.service.StockDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,42 +14,38 @@ public class StockDetailController {
     @Autowired
     private StockDetailService stockDetailService;
 
-
-    public StockDetailController(StockDetailService stockDetailService) {
-        this.stockDetailService = stockDetailService;
-    }
-
     @GetMapping("/getAll")
-    public List<StockDetail> getAllStockDetails() {
-        return stockDetailService.getAllStockDetails();
+    public R getAllStockDetails() {
+        return R.ok().put("data", stockDetailService.getAllStockDetails());
     }
 
     @GetMapping("/{stockDetailId}")
-    public StockDetail getStockDetailById(@PathVariable Long stockDetailId) {
-        return stockDetailService.getStockDetailById(stockDetailId);
+    public R getStockDetailById(@PathVariable Long stockDetailId) {
+        return R.ok().put("data", stockDetailService.getStockDetailById(stockDetailId));
     }
 
     @PostMapping("/")
-    public StockDetail createStockDetail(@RequestBody StockDetail stockDetail) {
-        return stockDetailService.saveStockDetail(stockDetail);
+    public R createStockDetail(@RequestBody StockDetail stockDetail) {
+        return R.ok().put("data", stockDetailService.saveStockDetail(stockDetail));
     }
 
     @PutMapping("/{stockDetailId}")
-    public StockDetail updateStockDetail(@PathVariable Long stockDetailId, @RequestBody StockDetail stockDetail) {
+    public R updateStockDetail(@PathVariable Long stockDetailId, @RequestBody StockDetail stockDetail) {
         StockDetail existingStockDetail = stockDetailService.getStockDetailById(stockDetailId);
         if (existingStockDetail != null) {
             // Update the existing stock detail
             existingStockDetail.setStockId(stockDetail.getStockId());
             existingStockDetail.setStockPrice(stockDetail.getStockPrice());
             existingStockDetail.setTime(stockDetail.getTime());
-            return stockDetailService.saveStockDetail(existingStockDetail);
+            return R.ok().put("data", stockDetailService.saveStockDetail(existingStockDetail));
         }
-        return null;
+        return R.error("The stockDetail id doesn't exist");
     }
 
     @DeleteMapping("/{stockDetailId}")
-    public void deleteStockDetail(@PathVariable Long stockDetailId) {
+    public R deleteStockDetail(@PathVariable Long stockDetailId) {
         stockDetailService.deleteStockDetail(stockDetailId);
+        return R.ok().put("message", "Successfully deleted");
     }
 
     // Other controller methods

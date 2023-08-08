@@ -1,5 +1,6 @@
 package com.room18.transaction.controller;
 
+import com.room18.common.R;
 import com.room18.transaction.entity.TransactionRecord;
 import com.room18.transaction.service.TransactionRecordService;
 import org.springframework.beans.BeanUtils;
@@ -15,35 +16,36 @@ public class TransactionRecordController {
     private TransactionRecordService transactionRecordService;
 
     @GetMapping("/getAll")
-    public List<TransactionRecord> getAllTransactionRecords() {
-        return transactionRecordService.getAllTransactionRecords();
+    public R getAllTransactionRecords() {
+        return R.ok().put("data", transactionRecordService.getAllTransactionRecords());
     }
 
     @GetMapping("/{trId}")
-    public TransactionRecord getTransactionRecordById(@PathVariable Long trId) {
-        return transactionRecordService.getTransactionRecordById(trId);
+    public R getTransactionRecordById(@PathVariable Long trId) {
+        return R.ok().put("data", transactionRecordService.getTransactionRecordById(trId));
     }
 
     @PostMapping("/")
-    public TransactionRecord createTransactionRecord(@RequestBody TransactionRecord transactionRecord) {
-        return transactionRecordService.saveTransactionRecord(transactionRecord);
+    public R createTransactionRecord(@RequestBody TransactionRecord transactionRecord) {
+        return R.ok().put("data", transactionRecordService.saveTransactionRecord(transactionRecord));
     }
 
     @PutMapping("/{trId}")
-    public TransactionRecord updateTransactionRecord(@PathVariable Long trId, @RequestBody TransactionRecord transactionRecord) {
+    public R updateTransactionRecord(@PathVariable Long trId, @RequestBody TransactionRecord transactionRecord) {
         TransactionRecord existingRecord = transactionRecordService.getTransactionRecordById(trId);
         if (existingRecord != null) {
             // Update existing transaction record
             BeanUtils.copyProperties(transactionRecord, existingRecord);
             // Update other fields as needed
-            return transactionRecordService.saveTransactionRecord(existingRecord);
+            return R.ok().put("data", transactionRecordService.saveTransactionRecord(existingRecord));
         }
-        return null;
+        return R.error("The transactionRecord id doesn't exist");
     }
 
     @DeleteMapping("/{trId}")
-    public void deleteTransactionRecord(@PathVariable Long trId) {
+    public R deleteTransactionRecord(@PathVariable Long trId) {
         transactionRecordService.deleteTransactionRecord(trId);
+        return R.ok().put("message", "Successfully deleted");
     }
 
     // Other controller methods

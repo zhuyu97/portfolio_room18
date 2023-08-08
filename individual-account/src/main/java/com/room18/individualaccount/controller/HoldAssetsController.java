@@ -1,5 +1,6 @@
 package com.room18.individualaccount.controller;
 
+import com.room18.common.R;
 import com.room18.individualaccount.entity.HoldAssets;
 import com.room18.individualaccount.service.HoldAssetsService;
 import org.springframework.beans.BeanUtils;
@@ -15,35 +16,36 @@ public class HoldAssetsController {
     private HoldAssetsService holdAssetsService;
 
     @GetMapping("/getAll")
-    public List<HoldAssets> getAllHoldAssets() {
-        return holdAssetsService.getAllHoldAssets();
+    public R getAllHoldAssets() {
+        return R.ok().put("data",holdAssetsService.getAllHoldAssets());
     }
 
     @GetMapping("/{holdAssetsId}")
-    public HoldAssets getHoldAssetsById(@PathVariable Long holdAssetsId) {
-        return holdAssetsService.getHoldAssetsById(holdAssetsId);
+    public R getHoldAssetsById(@PathVariable Long holdAssetsId) {
+        return R.ok().put("data",holdAssetsService.getHoldAssetsById(holdAssetsId));
     }
 
     @PostMapping("/")
-    public HoldAssets createHoldAssets(@RequestBody HoldAssets holdAssets) {
-        return holdAssetsService.saveHoldAssets(holdAssets);
+    public R createHoldAssets(@RequestBody HoldAssets holdAssets) {
+        return R.ok().put("data",holdAssetsService.saveHoldAssets(holdAssets));
     }
 
     @PutMapping("/{holdAssetsId}")
-    public HoldAssets updateHoldAssets(@PathVariable Long holdAssetsId, @RequestBody HoldAssets holdAssets) {
+    public R updateHoldAssets(@PathVariable Long holdAssetsId, @RequestBody HoldAssets holdAssets) {
         HoldAssets existingHoldAssets = holdAssetsService.getHoldAssetsById(holdAssetsId);
         if (existingHoldAssets != null) {
             // Update existing hold assets
             BeanUtils.copyProperties(holdAssets, existingHoldAssets);
             // Update other fields as needed
-            return holdAssetsService.saveHoldAssets(existingHoldAssets);
+            return R.ok().put("data",holdAssetsService.saveHoldAssets(existingHoldAssets));
         }
-        return null;
+        return R.error("The hostAssets id doesn't exist");
     }
 
     @DeleteMapping("/{holdAssetsId}")
-    public void deleteHoldAssets(@PathVariable Long holdAssetsId) {
+    public R deleteHoldAssets(@PathVariable Long holdAssetsId) {
         holdAssetsService.deleteHoldAssets(holdAssetsId);
+        return R.ok().put("message", "Successfully deleted");
     }
 
     // Other controller methods

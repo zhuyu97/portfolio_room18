@@ -3,22 +3,26 @@ package com.room18.stock.controller;
 import com.room18.common.R;
 import com.room18.stock.entity.Stock;
 import com.room18.stock.service.StockService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@Api(tags = "Stock data interface")
 @RestController
 @RequestMapping("/api/stocks")
 public class StockController {
     @Autowired
     private StockService stockService;
 
+    @ApiOperation(value ="Get all stocks")
     @GetMapping("/getAll")
     public R getAllStocks() {
         return R.ok().put("data", stockService.getAllStocks());
     }
 
+    @ApiOperation(value ="Get stock stocks")
     @GetMapping("/{stockId}")
     public R getStocksById(@PathVariable Long stockId) {
         return R.ok().put("data", stockService.getStocksById(stockId));

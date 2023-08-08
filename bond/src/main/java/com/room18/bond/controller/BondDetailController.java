@@ -5,12 +5,14 @@ import com.room18.bond.entity.BondDetail;
 import com.room18.bond.service.BondDetailService;
 import com.room18.bond.service.BondService;
 import com.room18.common.R;
+import io.swagger.annotations.Api;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Api(tags = "BondDetail data interface")
 @RestController
 @RequestMapping("/api/bondDetail")
 public class BondDetailController {

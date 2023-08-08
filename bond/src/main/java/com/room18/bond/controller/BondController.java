@@ -3,11 +3,12 @@ package com.room18.bond.controller;
 import com.room18.bond.entity.Bond;
 import com.room18.bond.service.BondService;
 import com.room18.common.R;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@Api(tags = "Bond data interface")
 @RestController
 @RequestMapping("/api/bond")
 public class BondController {

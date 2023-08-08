@@ -3,12 +3,13 @@ package com.room18.transaction.controller;
 import com.room18.common.R;
 import com.room18.transaction.entity.TransactionRecord;
 import com.room18.transaction.service.TransactionRecordService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@Api(tags = "TransactionRecord data interface")
 @RestController
 @RequestMapping("/api/transactionRecord")
 public class TransactionRecordController {

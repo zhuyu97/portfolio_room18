@@ -14,7 +14,7 @@ public class StockController {
     @Autowired
     private StockService stockService;
 
-    @GetMapping("/getAllStocks")
+    @GetMapping("/getAll")
     public R getAllStocks() {
         return R.ok().put("data", stockService.getAllStocks());
     }

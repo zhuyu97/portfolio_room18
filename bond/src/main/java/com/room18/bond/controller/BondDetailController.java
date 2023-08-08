@@ -17,7 +17,7 @@ public class BondDetailController {
     @Autowired
     private BondDetailService bondDetailService;
 
-    @GetMapping
+    @GetMapping("/getAll")
     public R getAllBondDetails() {
         return R.ok().put("data",bondDetailService.getAllBondDetails());
     }

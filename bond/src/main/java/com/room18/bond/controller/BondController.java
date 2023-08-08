@@ -14,7 +14,7 @@ public class BondController {
     @Autowired
     private BondService bondService;
 
-    @GetMapping
+    @GetMapping("/getAll")
     public R getAllBonds() {
         return R.ok().put("data", bondService.getAllBonds());
     }
@@ -24,7 +24,7 @@ public class BondController {
         return R.ok().put("data", bondService.getBondById(bondId));
     }
 
-    @PostMapping
+    @PostMapping("/")
     public R createBond(@RequestBody Bond bond) {
         return R.ok().put("data",bondService.saveBond(bond));
     }

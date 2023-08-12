@@ -1,7 +1,7 @@
 package com.room18.stock.service;
 
 import com.room18.stock.dao.StockDao;
-import com.room18.stock.entity.Stock;
+import com.room18.common.entity.Stock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

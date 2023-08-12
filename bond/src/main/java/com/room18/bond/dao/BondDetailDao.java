@@ -1,6 +1,6 @@
 package com.room18.bond.dao;
 
-import com.room18.bond.entity.BondDetail;
+import com.room18.common.entity.BondDetail;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BondDetailDao extends JpaRepository<BondDetail, Long> {

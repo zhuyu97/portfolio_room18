@@ -1,0 +1,31 @@
+server:
+  port: 7001
+
+# 单机版
+eureka:
+  instance:
+    hostname: eureka7001.com  #eureka服务端的实例名字
+  client:
+    register-with-eureka: false    #表示不向注册中心注册自己
+    fetch-registry: false   #表示自己就是注册中心，职责是维护服务实例，并不需要去检索服务
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+
+spring:
+  datasource:
+    username: root
+    password: mysql
+    url: jdbc:mysql://localhost:3306/portfolio?serverTimezone=UTC
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  mvc:
+   pathmatch:
+     matching-strategy: ant_path_matcher
+

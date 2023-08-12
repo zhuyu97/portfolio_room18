@@ -1,7 +1,7 @@
 package com.room18.individualaccount.service;
 
 import com.room18.individualaccount.dao.CashDao;
-import com.room18.individualaccount.entity.Cash;
+import com.room18.common.entity.Cash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

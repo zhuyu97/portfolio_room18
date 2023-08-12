@@ -1,7 +1,7 @@
 package com.room18.bond.service;
 
 import com.room18.bond.dao.BondDetailDao;
-import com.room18.bond.entity.BondDetail;
+import com.room18.common.entity.BondDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

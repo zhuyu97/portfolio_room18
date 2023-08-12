@@ -1,7 +1,7 @@
 package com.room18.individualaccount.service;
 
 import com.room18.individualaccount.dao.HoldAssetsDao;
-import com.room18.individualaccount.entity.HoldAssets;
+import com.room18.common.entity.HoldAssets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

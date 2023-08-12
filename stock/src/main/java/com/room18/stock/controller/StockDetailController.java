@@ -1,13 +1,12 @@
 package com.room18.stock.controller;
 
 import com.room18.common.R;
-import com.room18.stock.entity.StockDetail;
+import com.room18.common.entity.StockDetail;
 import com.room18.stock.service.StockDetailService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 @Api(tags = "StockDetail data interface")
 @RestController
 @RequestMapping("/api/stockDetails")

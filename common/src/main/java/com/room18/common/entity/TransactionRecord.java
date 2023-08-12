@@ -1,4 +1,4 @@
-package com.room18.transaction.entity;
+package com.room18.common.entity;
 
 import lombok.Data;
 

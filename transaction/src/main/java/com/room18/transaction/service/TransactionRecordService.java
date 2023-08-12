@@ -1,7 +1,7 @@
 package com.room18.transaction.service;
 
 import com.room18.transaction.dao.TransactionRecordDao;
-import com.room18.transaction.entity.TransactionRecord;
+import com.room18.common.entity.TransactionRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

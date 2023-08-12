@@ -1,13 +1,12 @@
 package com.room18.individualaccount.controller;
 
 import com.room18.common.R;
-import com.room18.individualaccount.entity.Cash;
+import com.room18.common.entity.Cash;
 import com.room18.individualaccount.service.CashService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 @Api(tags = "Cash data interface")
 @RestController
 @RequestMapping("/api/cash")

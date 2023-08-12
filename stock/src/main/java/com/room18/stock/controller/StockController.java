@@ -1,14 +1,13 @@
 package com.room18.stock.controller;
 
 import com.room18.common.R;
-import com.room18.stock.entity.Stock;
+import com.room18.common.entity.Stock;
 import com.room18.stock.service.StockService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 @Api(tags = "Stock data interface")
 @RestController
 @RequestMapping("/api/stocks")
@@ -24,7 +23,7 @@ public class StockController {
 
     @ApiOperation(value ="Get stock stocks")
     @GetMapping("/{stockId}")
-    public R getStocksById(@PathVariable Long stockId) {
+    public R getStockById(@PathVariable Long stockId) {
         return R.ok().put("data", stockService.getStocksById(stockId));
     }
 
@@ -34,7 +33,7 @@ public class StockController {
     }
 
     @PutMapping("/{stockId}")
-    public R updateStocks(@PathVariable Long stockId, @RequestBody Stock stock) {
+    public R updateStock(@PathVariable Long stockId, @RequestBody Stock stock) {
         Stock existingStocks = stockService.getStocksById(stockId);
         if (existingStocks != null) {
             // Update the existing stocks
@@ -45,7 +44,7 @@ public class StockController {
     }
 
     @DeleteMapping("/{stockId}")
-    public R deleteStocks(@PathVariable Long stockId) {
+    public R deleteStock(@PathVariable Long stockId) {
         stockService.deleteStocks(stockId);
         return R.ok().put("message", "Successfully deleted");
     }

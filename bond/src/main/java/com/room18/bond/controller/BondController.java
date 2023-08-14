@@ -46,5 +46,11 @@ public class BondController {
         return R.ok().put("message", "Successfully deleted");
     }
 
+    @GetMapping("/fuzzyQuery/{queryString}")
+    public R getBondByFuzzyQuery(){
+        //Todo
+        return R.ok();
+    }
+
     // 其他控制器方法
 }

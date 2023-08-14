@@ -46,6 +46,11 @@ public class NetWorthController {
         return R.ok().put("message", "Successfully deleted");
     }
 
+    @GetMapping("/networthnow")
+    public R getCurrentNetWorth(){
+        return R.ok();
+    }
+
 
     // Additional methods can be added based on your requirements
 }

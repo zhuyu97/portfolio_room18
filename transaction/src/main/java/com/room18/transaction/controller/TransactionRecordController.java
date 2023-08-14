@@ -2,6 +2,10 @@ package com.room18.transaction.controller;
 
 import com.room18.common.R;
 import com.room18.common.entity.TransactionRecord;
+import com.room18.transaction.entity.BuyBondDTO;
+import com.room18.transaction.entity.BuyStockDTO;
+import com.room18.transaction.entity.SellBondDTO;
+import com.room18.transaction.entity.SellStockDTO;
 import com.room18.transaction.service.StockFeignService;
 import com.room18.transaction.service.TransactionRecordService;
 import io.swagger.annotations.Api;
@@ -56,6 +60,30 @@ public class TransactionRecordController {
     public R getStockByIdByOpenfeign(@PathVariable Long stockId) {
         R r = stockFeignService.getStockById(stockId);
         return r;
+    }
+
+    @PostMapping("/buyStock")
+    public R buyStock(@RequestBody BuyStockDTO buyStockDTO){
+        //Todo
+        return R.ok();
+    }
+
+    @PostMapping("/buyStock")
+    public R buyBond(@RequestBody BuyBondDTO buyBondDTO){
+        //Todo
+        return R.ok();
+    }
+
+    @PostMapping("/sellStock")
+    public R sellStock(@RequestBody SellStockDTO sellStockDTO){
+        //Todo
+        return R.ok();
+    }
+
+    @PostMapping("/sellBond")
+    public R sellBond(@RequestBody SellBondDTO sellBondDTO){
+        //Todo
+        return R.ok();
     }
 
     // Other controller methods

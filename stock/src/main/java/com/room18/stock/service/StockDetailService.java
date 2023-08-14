@@ -28,5 +28,10 @@ public class StockDetailService {
         stockDetailDao.deleteById(stockDetailId);
     }
 
+    public StockDetail findStockDetailByStockId(Long stockId){
+        return stockDetailDao.findStockDetailByStockId(stockId);
+    }
+
+
     // Other service methods
 }

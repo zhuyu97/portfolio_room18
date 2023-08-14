@@ -1,9 +1,11 @@
 package com.room18.stock.controller;
 
 import com.room18.common.R;
+import com.room18.common.VO.StockVO;
 import com.room18.common.entity.StockDetail;
 import com.room18.stock.service.StockDetailService;
 import io.swagger.annotations.Api;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,6 +48,18 @@ public class StockDetailController {
     public R deleteStockDetail(@PathVariable Long stockDetailId) {
         stockDetailService.deleteStockDetail(stockDetailId);
         return R.ok().put("message", "Successfully deleted");
+    }
+    
+    @GetMapping("/findStockDetailByStockId/{stockId}")
+    public R findStockDetailByStockId(@PathVariable Long stockId){
+        StockDetail stockDetail = stockDetailService.findStockDetailByStockId(stockId);
+        if(stockDetail != null){
+            return R.ok().put("data", stockDetail);
+        }
+        else {
+            return R.error(404, "There is no stockDetail with the stockId.");
+        }
+
     }
 
     // Other controller methods

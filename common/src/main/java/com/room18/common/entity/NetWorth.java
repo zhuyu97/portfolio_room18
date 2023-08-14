@@ -2,10 +2,7 @@ package com.room18.common.entity;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
@@ -13,6 +10,7 @@ import java.time.LocalDateTime;
 @Table(name = "Net_Worth")
 public class NetWorth {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "net_worth_id")
     private Long netWorthId;
 

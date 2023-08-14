@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Table(name = "Bonds")
 public class Bond {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "bond_id")
     private Long bondId;
 

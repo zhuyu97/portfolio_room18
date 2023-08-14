@@ -29,5 +29,9 @@ public class NetWorthService {
         netWorthDao.deleteById(netWorthId);
     }
 
+    public NetWorth calCurrentNetWorth(){
+        return null;
+    }
+
     // Additional methods can be added based on your requirements
 }

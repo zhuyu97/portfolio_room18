@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @Table(name = "Bond_detail")
 public class BondDetail {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "bond_detail_id")
     private Long bondDetailId;
 

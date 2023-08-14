@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Table(name = "Transaction_record")
 public class TransactionRecord {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "tr_id")
     private Long trId;
 
@@ -22,7 +23,7 @@ public class TransactionRecord {
     private Integer transactionType;
 
     @Column(name = "number_of_transaction")
-    private Integer numberOfTransaction;
+    private Long numberOfTransaction;
 
     @Column(name = "production_id")
     private Long productionId;

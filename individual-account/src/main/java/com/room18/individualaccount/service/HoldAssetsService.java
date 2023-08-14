@@ -3,6 +3,7 @@ package com.room18.individualaccount.service;
 import com.room18.individualaccount.dao.HoldAssetsDao;
 import com.room18.common.entity.HoldAssets;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,6 +27,11 @@ public class HoldAssetsService {
 
     public void deleteHoldAssets(Long holdAssetsId) {
         holdAssetsDao.deleteById(holdAssetsId);
+    }
+
+    public HoldAssets getHoldAssetsByProductionIdAndType(Long productionId, Integer productionType){
+        HoldAssets holdAssets = holdAssetsDao.getHoldAssetsByProductionIdAndType(productionId, productionType);
+        return holdAssets;
     }
 
     // Other service methods

@@ -2,12 +2,18 @@ package com.room18.transaction.controller;
 
 import com.room18.common.R;
 import com.room18.common.entity.TransactionRecord;
+import com.room18.transaction.entity.BuyBondDTO;
+import com.room18.transaction.entity.BuyStockDTO;
+import com.room18.transaction.entity.SellBondDTO;
+import com.room18.transaction.entity.SellStockDTO;
 import com.room18.transaction.service.StockFeignService;
 import com.room18.transaction.service.TransactionRecordService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 
 @Api(tags = "TransactionRecord data interface")
 @RestController
@@ -56,6 +62,35 @@ public class TransactionRecordController {
     public R getStockByIdByOpenfeign(@PathVariable Long stockId) {
         R r = stockFeignService.getStockById(stockId);
         return r;
+    }
+
+    @PostMapping("/buyStock")
+    public R buyStock(@RequestBody BuyStockDTO buyStockDTO){
+        HashMap<String, Object> hashMap = transactionRecordService.buyStock(buyStockDTO);
+        if((Boolean) hashMap.get("success") == true){
+            return R.ok().put("msg", (String) hashMap.get("message"));
+        }
+        else {
+            return R.error(404, (String) hashMap.get("message"));
+        }
+    }
+
+    @PostMapping("/buyBond")
+    public R buyBond(@RequestBody BuyBondDTO buyBondDTO){
+        //Todo
+        return R.ok();
+    }
+
+    @PostMapping("/sellStock")
+    public R sellStock(@RequestBody SellStockDTO sellStockDTO){
+        //Todo
+        return R.ok();
+    }
+
+    @PostMapping("/sellBond")
+    public R sellBond(@RequestBody SellBondDTO sellBondDTO){
+        //Todo
+        return R.ok();
     }
 
     // Other controller methods

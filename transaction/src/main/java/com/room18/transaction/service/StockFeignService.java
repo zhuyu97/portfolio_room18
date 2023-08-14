@@ -23,6 +23,7 @@ public interface StockFeignService {
 
     @DeleteMapping("/api/stocks/{stockId}")
     public R deleteStock(@PathVariable Long stockId);
+
     @GetMapping("/api/stockDetails/getAll")
     public R getAllStockDetails();
 
@@ -37,4 +38,7 @@ public interface StockFeignService {
 
     @DeleteMapping("/api/stockDetails/{stockDetailId}")
     public R deleteStockDetail(@PathVariable Long stockDetailId);
+
+    @GetMapping("/api/stockDetails/findStockDetailByStockId/{stockId}")
+    public R findStockDetailByStockId(@PathVariable Long stockId);
 }

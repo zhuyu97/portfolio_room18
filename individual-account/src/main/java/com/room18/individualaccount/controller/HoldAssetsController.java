@@ -48,5 +48,17 @@ public class HoldAssetsController {
         return R.ok().put("message", "Successfully deleted");
     }
 
+    @GetMapping("/{productionId}/{productionType}")
+    public R getHoldAssetsByProductionIdAndType(@PathVariable Long productionId, @PathVariable Integer productionType) {
+        HoldAssets holdAssets = holdAssetsService.getHoldAssetsByProductionIdAndType(productionId, productionType);
+        if(holdAssets != null){
+            return R.ok().put("data", holdAssets);
+        }
+        else {
+            return R.error(404, "There is no hold assets with that production id and type.");
+        }
+    }
+
+
     // Other controller methods
 }

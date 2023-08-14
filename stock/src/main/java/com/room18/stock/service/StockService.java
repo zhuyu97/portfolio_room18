@@ -3,6 +3,7 @@ package com.room18.stock.service;
 import com.room18.stock.dao.StockDao;
 import com.room18.common.entity.Stock;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,6 +27,11 @@ public class StockService {
 
     public void deleteStocks(Long stockId) {
         stockDao.deleteById(stockId);
+    }
+
+    public List<Stock> findStockByFuzzyQuery(String queryString){
+        List<Stock> stocks = stockDao.findStockByFuzzyQuery(queryString);
+        return stocks;
     }
 
     // Other service methods

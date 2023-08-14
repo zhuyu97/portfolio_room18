@@ -27,6 +27,12 @@ public class StockController {
         return R.ok().put("data", stockService.getStocksById(stockId));
     }
 
+    @GetMapping("/fuzzyQuery/{queryString}")
+    public R getStockByFuzzyQuery(){
+        //Todo
+        return R.ok();
+    }
+
     @PostMapping("/")
     public R createStock(@RequestBody Stock stock) {
         return R.ok().put("data", stockService.saveStocks(stock));

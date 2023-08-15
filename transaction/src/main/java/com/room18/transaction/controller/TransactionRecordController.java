@@ -77,8 +77,13 @@ public class TransactionRecordController {
 
     @PostMapping("/buyBond")
     public R buyBond(@RequestBody BuyBondDTO buyBondDTO){
-        //Todo
-        return R.ok();
+        HashMap<String, Object> hashMap = transactionRecordService.buyBond(buyBondDTO);
+        if((Boolean) hashMap.get("success") == true){
+            return R.ok().put("msg", (String) hashMap.get("message"));
+        }
+        else {
+            return R.error(404, (String) hashMap.get("message"));
+        }
     }
 
     @PostMapping("/sellStock")
@@ -94,8 +99,13 @@ public class TransactionRecordController {
 
     @PostMapping("/sellBond")
     public R sellBond(@RequestBody SellBondDTO sellBondDTO){
-        //Todo
-        return R.ok();
+        HashMap<String, Object> hashMap = transactionRecordService.sellBond(sellBondDTO);
+        if((Boolean) hashMap.get("success") == true){
+            return R.ok().put("msg", (String) hashMap.get("message"));
+        }
+        else {
+            return R.error(404, (String) hashMap.get("message"));
+        }
     }
 
     // Other controller methods

@@ -7,6 +7,6 @@ import org.springframework.data.repository.query.Param;
 
 public interface StockDetailDao extends JpaRepository<StockDetail, Long> {
     // Custom query methods
-    @Query(value = "SELECT * FROM stock_detail WHERE stock_id = :stock_id ORDER BY `time` DESC LIMIT 1",nativeQuery = true)
-    public StockDetail findStockDetailByStockId(@Param("stock_id") Long stockId);
+    @Query(value = "SELECT * FROM stock_detail WHERE stock_id = :stockId ORDER BY `time` DESC LIMIT 1",nativeQuery = true)
+    public StockDetail findStockDetailByStockId(@Param("stockId") Long stockId);
 }

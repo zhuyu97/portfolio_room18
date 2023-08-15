@@ -19,8 +19,6 @@ class TransactionApplicationTests {
         buyStockDTO.setBuyAmount(1000L);
 
         R r = transactionRecordController.buyStock(buyStockDTO);
-
-
     }
 
 }

@@ -83,8 +83,13 @@ public class TransactionRecordController {
 
     @PostMapping("/sellStock")
     public R sellStock(@RequestBody SellStockDTO sellStockDTO){
-        //Todo
-        return R.ok();
+        HashMap<String, Object> hashMap = transactionRecordService.sellStock(sellStockDTO);
+        if((Boolean) hashMap.get("success") == true){
+            return R.ok().put("msg", (String) hashMap.get("message"));
+        }
+        else {
+            return R.error(404, (String) hashMap.get("message"));
+        }
     }
 
     @PostMapping("/sellBond")

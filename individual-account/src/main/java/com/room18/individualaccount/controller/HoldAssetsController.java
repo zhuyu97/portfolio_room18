@@ -2,11 +2,17 @@ package com.room18.individualaccount.controller;
 
 import com.room18.common.R;
 import com.room18.common.entity.HoldAssets;
+import com.room18.individualaccount.entity.HoldAssetsVO;
 import com.room18.individualaccount.service.HoldAssetsService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.loadbalancer.core.DelegatingServiceInstanceListSupplier;
 import org.springframework.web.bind.annotation.*;
+
+import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.List;
 
 @Api(tags = "Hold Assets data interface")
 @RestController
@@ -17,7 +23,13 @@ public class HoldAssetsController {
 
     @GetMapping("/getAll")
     public R getAllHoldAssets() {
-        return R.ok().put("data",holdAssetsService.getAllHoldAssets());
+        List<HoldAssetsVO> allHoldAssets = holdAssetsService.getAllHoldAssets();
+        if(allHoldAssets.size() > 0){
+            return R.ok().put("data", allHoldAssets);
+        }
+        else {
+            return R.error(404, "No holdAssets found.");
+        }
     }
 
     @GetMapping("/{holdAssetsId}")
@@ -57,6 +69,12 @@ public class HoldAssetsController {
         else {
             return R.error(404, "There is no hold assets with that production id and type.");
         }
+    }
+    
+    @GetMapping("/getAllAssetsValue")
+    public R getAllAssetsValue(){
+        HashMap<String, BigDecimal> allAssetsValue = holdAssetsService.getAllAssetsValue();
+        return R.ok().put("data", allAssetsValue);
     }
 
 

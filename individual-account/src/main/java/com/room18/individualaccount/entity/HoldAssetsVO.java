@@ -3,6 +3,7 @@ package com.room18.individualaccount.entity;
 import lombok.Data;
 
 import javax.persistence.Column;
+import java.math.BigDecimal;
 
 @Data
 public class HoldAssetsVO {
@@ -16,5 +17,5 @@ public class HoldAssetsVO {
 
     private Long productionAmount;
 
-    private Double totalValue;
+    private BigDecimal totalValue;
 }

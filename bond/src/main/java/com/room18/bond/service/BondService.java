@@ -2,7 +2,9 @@ package com.room18.bond.service;
 
 import com.room18.bond.dao.BondDao;
 import com.room18.common.entity.Bond;
+import com.room18.common.entity.Stock;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,6 +28,11 @@ public class BondService {
 
     public void deleteBond(Long bondId) {
         bondDao.deleteById(bondId);
+    }
+
+    public List<Bond> findBondByFuzzyQuery(String queryString) {
+        List<Bond> bonds = bondDao.findBondByFuzzyQuery(queryString);
+        return bonds;
     }
 
     // 其他服务方法

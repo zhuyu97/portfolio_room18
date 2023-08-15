@@ -21,7 +21,7 @@ public class BondDetailController {
     }
 
     @GetMapping("/{bondDetailId}")
-    public R getBondById(@PathVariable Long bondDetailId) {
+    public R getBondDetailById(@PathVariable Long bondDetailId) {
         return R.ok().put("data",bondDetailService.getBondDetailById(bondDetailId));
     }
 
@@ -45,6 +45,17 @@ public class BondDetailController {
     public R deleteBondDetail(@PathVariable Long bondDetailId) {
         bondDetailService.deleteBondDetail(bondDetailId);
         return R.ok().put("message", "Successfully deleted");
+    }
+
+    @GetMapping("/findBondDetailByBondId/{bondId}")
+    public R findBondDetailByBondId(@PathVariable Long bondId) {
+        BondDetail bondDetail = bondDetailService.findBondDetailByBondId(bondId);
+        if(bondDetail != null){
+            return R.ok().put("data", bondDetail);
+        }
+        else {
+            return R.error(404, "There is no bondDetail with the bondId.");
+        }
     }
     // 其他控制器方法
 }

@@ -125,7 +125,7 @@ public class TransactionRecordService {
             stockFeignService.createStockDetail(stockDetailNow);
 
             //calculate current net worth
-//            R r = netWorthFeignService.calCurrentNetWorth();
+            R r = netWorthFeignService.calCurrentNetWorth();
             result.put("success", true);
             result.put("message", "Successful transaction.");
             return result;
@@ -158,7 +158,7 @@ public class TransactionRecordService {
         else {
             //update holdAssets
             holdAssets.setProductionAmount(holdAssets.getProductionAmount() - sellStockDTO.getSellAmount());
-            R r = indAccountFeignService.updateHoldAssets(holdAssets.getHoldAssetsId(), holdAssets);
+            R updateHoldAssetsR = indAccountFeignService.updateHoldAssets(holdAssets.getHoldAssetsId(), holdAssets);
 
             //update cash
             R cashR = indAccountFeignService.getCashById(1L);
@@ -193,7 +193,7 @@ public class TransactionRecordService {
             stockFeignService.createStockDetail(stockDetailNow);
 
             //calculate current net worth
-//            R r = netWorthFeignService.calCurrentNetWorth();
+            R r = netWorthFeignService.calCurrentNetWorth();
             result.put("success", true);
             result.put("message", "Successful transaction.");
             return result;
@@ -266,7 +266,7 @@ public class TransactionRecordService {
 
 
             //calculate current net worth
-//            R r = netWorthFeignService.calCurrentNetWorth();
+            R r = netWorthFeignService.calCurrentNetWorth();
             result.put("success", true);
             result.put("message", "Successful transaction.");
             return result;
@@ -299,7 +299,7 @@ public class TransactionRecordService {
         else {
             //update holdAssets
             holdAssets.setProductionAmount(holdAssets.getProductionAmount() - sellBondDTO.getSellAmount());
-            R r = indAccountFeignService.updateHoldAssets(holdAssets.getHoldAssetsId(), holdAssets);
+            R updateHoldAssetsR = indAccountFeignService.updateHoldAssets(holdAssets.getHoldAssetsId(), holdAssets);
 
             //update cash
             R cashR = indAccountFeignService.getCashById(1L);
@@ -328,7 +328,7 @@ public class TransactionRecordService {
 
 
             //calculate current net worth
-//            R r = netWorthFeignService.calCurrentNetWorth();
+            R r = netWorthFeignService.calCurrentNetWorth();
             result.put("success", true);
             result.put("message", "Successful transaction.");
             return result;

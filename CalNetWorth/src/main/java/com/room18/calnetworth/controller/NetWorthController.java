@@ -16,7 +16,7 @@ public class NetWorthController {
 
     @GetMapping("/getAll")
     public R getAllNetWorths() {
-        return R.ok().put("data",netWorthService.getAllNetWorths());
+        return R.ok().put("data",netWorthService.getAllNetWorthsOrderByTime());
     }
 
     @PostMapping("/")
@@ -48,7 +48,8 @@ public class NetWorthController {
 
     @GetMapping("/networthnow")
     public R getCurrentNetWorth(){
-        return R.ok();
+        NetWorth currentNetWorth = netWorthService.getCurrentNetWorth();
+        return R.ok().put("data", currentNetWorth);
     }
 
     @GetMapping("/calCurNetWorth")

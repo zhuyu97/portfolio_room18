@@ -3,6 +3,7 @@ package com.room18.common.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
@@ -15,7 +16,7 @@ public class NetWorth {
     private Long netWorthId;
 
     @Column(name = "net_worth_value")
-    private Double netWorthValue;
+    private BigDecimal netWorthValue;
 
     @Column(name = "time")
     private LocalDateTime time;

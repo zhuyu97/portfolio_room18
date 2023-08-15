@@ -1,4 +1,4 @@
-package com.room18.individualaccount.entity;
+package com.room18.common.VO;
 
 import lombok.Data;
 

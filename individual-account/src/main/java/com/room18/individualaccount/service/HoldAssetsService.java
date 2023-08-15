@@ -8,7 +8,7 @@ import com.room18.common.VO.StockVO;
 import com.room18.common.entity.Cash;
 import com.room18.individualaccount.dao.HoldAssetsDao;
 import com.room18.common.entity.HoldAssets;
-import com.room18.individualaccount.entity.HoldAssetsVO;
+import com.room18.common.VO.HoldAssetsVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -91,10 +91,14 @@ public class HoldAssetsService {
         BigDecimal bondValue = new BigDecimal(0);
         for(HoldAssetsVO holdAssetsVO: allHoldAssets){
             if(holdAssetsVO.getProductionTypeName().equalsIgnoreCase("stock")){
-                stockValue = stockValue.add(holdAssetsVO.getTotalValue());
+                R stockR = stockFeignService.getStockById(holdAssetsVO.getProductionId());
+                StockVO stockVO = JSON.parseObject(JSON.toJSONString(stockR.get("data")), StockVO.class);
+                stockValue = stockValue.add(stockVO.getStockPrice().multiply(BigDecimal.valueOf(holdAssetsVO.getProductionAmount())));
             }
             else if(holdAssetsVO.getProductionTypeName().equalsIgnoreCase("bond")){
-                bondValue = bondValue.add(holdAssetsVO.getTotalValue());
+                R bondR = bondFeignService.getBondById(holdAssetsVO.getProductionId());
+                BondVO bondVO = JSON.parseObject(JSON.toJSONString(bondR.get("data")), BondVO.class);
+                bondValue = bondValue.add(bondVO.getBondPrice().multiply(BigDecimal.valueOf(holdAssetsVO.getProductionAmount())));
             }
         }
 
@@ -102,7 +106,6 @@ public class HoldAssetsService {
         assetsValueMap.put("bond", bondValue);
         return assetsValueMap;
     }
-
 
     // Other service methods
 }

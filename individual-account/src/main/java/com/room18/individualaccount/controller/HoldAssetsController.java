@@ -2,12 +2,11 @@ package com.room18.individualaccount.controller;
 
 import com.room18.common.R;
 import com.room18.common.entity.HoldAssets;
-import com.room18.individualaccount.entity.HoldAssetsVO;
+import com.room18.common.VO.HoldAssetsVO;
 import com.room18.individualaccount.service.HoldAssetsService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.loadbalancer.core.DelegatingServiceInstanceListSupplier;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;

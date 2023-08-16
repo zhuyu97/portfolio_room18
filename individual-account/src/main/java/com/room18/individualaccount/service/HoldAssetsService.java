@@ -87,13 +87,13 @@ public class HoldAssetsService {
         return holdAssets;
     }
 
-    public HashMap<String, BigDecimal> getAllAssetsValue() {
-        HashMap<String, BigDecimal> assetsValueMap = new HashMap<>();
+    public List<BigDecimal> getAllAssetsValue() {
+        List<BigDecimal> result = new ArrayList<>();
 
         List<HoldAssetsVO> allHoldAssets = getAllHoldAssets();
         //cash
         Cash cash = cashService.getCashById(1L);
-        assetsValueMap.put("cash", cash.getAmount());
+        result.add(cash.getAmount());
 
         //stock
         //bond
@@ -112,9 +112,9 @@ public class HoldAssetsService {
             }
         }
 
-        assetsValueMap.put("stock", stockValue);
-        assetsValueMap.put("bond", bondValue);
-        return assetsValueMap;
+        result.add(stockValue);
+        result.add(bondValue);
+        return result;
     }
 
     // Other service methods

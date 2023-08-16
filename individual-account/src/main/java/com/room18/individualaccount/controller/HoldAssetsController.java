@@ -73,7 +73,7 @@ public class HoldAssetsController {
     
     @GetMapping("/getAllAssetsValue")
     public R getAllAssetsValue(){
-        HashMap<String, BigDecimal> allAssetsValue = holdAssetsService.getAllAssetsValue();
+        List<BigDecimal> allAssetsValue = holdAssetsService.getAllAssetsValue();
         return R.ok().put("data", allAssetsValue);
     }
 

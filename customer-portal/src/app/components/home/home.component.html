@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+.centered-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  height: 100%;
+  background-color: #f1f1f1;
+}
+
+li a {
+  display: block;
+  color: #000;
+  padding: 20px 16px;
+  text-decoration: none;
+}
+
+li img.home {
+  width: 35px; /* 设置图像的宽度 */
+  height: 35px; /* 设置图像的高度 */
+  margin-right: 5px; /* 可选的图像和链接之间的间距 */
+}
+
+li img.stock {
+  width: 26px; /* 设置图像的宽度 */
+  height: 26px; /* 设置图像的高度 */
+  margin-left: 3px;
+  margin-right: 9px; /* 可选的图像和链接之间的间距 */
+}
+
+li a.active {
+  background-color: #04AA6D;
+  color: white;
+  display: block;
+  width: 100%;
+}
+
+li a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+  display: block;
+  width: 100%;
+}
+
+li {
+  display: flex; /* 将列表项设置为弹性容器 */
+  align-items: center; /* 垂直居中对齐容器内的内容 */
+}
+
+
+</style>
+</head>
+<body>
+
+<div>
+    <ul>
+      <h2 class="centered-text">Main Menu</h2>
+      <li>
+        <img src="../../assets/home.png" alt="Icon" class="home"/>
+        <a class="active" href="#home">Home</a>
+      </li>
+      <li>
+        <img src="../../assets/info_personal.png" alt="Icon" class="home"/>
+        <a href="#Personal information">Personal information</a>
+      </li>
+      <li>
+        <img src="../../assets/stock.png" alt="Icon" class="stock"/>
+        <a href="#Stock">Stock</a>
+      </li>
+      <li>
+        <img src="../../assets/bonds.png" alt="Icon" class="home"/>
+        <a href="#Bond">Bond</a>
+      </li>
+    </ul>
+</div>
+
+</body>
+</html>

@@ -11,6 +11,6 @@ export class AllassetsvalueService {
   constructor(private http:HttpClient) { }
 
   getAllAssetsValue() {
-    return this.http.get<AssetsValue []>(`${ASS_URL }/api/holdAssets/getAllAssetsValue`)
+    return this.http.get< any >(`${ASS_URL }/api/holdAssets/getAllAssetsValue`)
   }
 }

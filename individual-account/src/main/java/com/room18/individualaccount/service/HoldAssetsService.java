@@ -43,11 +43,11 @@ public class HoldAssetsService {
                     HoldAssetsVO holdAssetsVO = new HoldAssetsVO();
                     BeanUtils.copyProperties(holdAssets, holdAssetsVO);
                     holdAssetsVO.setProductionTypeName("Stock");
-                    holdAssetsVO.setHoldingCost(holdAssets.getCost().divide(BigDecimal.valueOf(holdAssetsVO.getProductionAmount())));
+                    holdAssetsVO.setHoldingCost(holdAssets.getCost().divide(BigDecimal.valueOf(holdAssetsVO.getProductionAmount()),0, BigDecimal.ROUND_HALF_UP));
                     BigDecimal curValue = stockVO.getStockPrice().multiply(BigDecimal.valueOf(holdAssetsVO.getProductionAmount()));
                     BigDecimal income = curValue.subtract(holdAssets.getCost());
                     holdAssetsVO.setIncome(income);
-                    holdAssetsVO.setIncomeRate(holdAssetsVO.getHoldingCost().divide(stockVO.getStockPrice())
+                    holdAssetsVO.setIncomeRate(holdAssetsVO.getHoldingCost().divide(stockVO.getStockPrice(),0, BigDecimal.ROUND_HALF_UP)
                             .negate()
                             .doubleValue());
                     holdAssetsVOList.add(holdAssetsVO);
@@ -58,11 +58,11 @@ public class HoldAssetsService {
                     HoldAssetsVO holdAssetsVO = new HoldAssetsVO();
                     BeanUtils.copyProperties(holdAssets, holdAssetsVO);
                     holdAssetsVO.setProductionTypeName("Bond");
-                    holdAssetsVO.setHoldingCost(holdAssets.getCost().divide(BigDecimal.valueOf(holdAssetsVO.getProductionAmount())));
+                    holdAssetsVO.setHoldingCost(holdAssets.getCost().divide(BigDecimal.valueOf(holdAssetsVO.getProductionAmount()),0, BigDecimal.ROUND_HALF_UP));
                     BigDecimal curValue = bondVO.getBondPrice().multiply(BigDecimal.valueOf(holdAssetsVO.getProductionAmount()));
                     BigDecimal income = curValue.subtract(holdAssets.getCost());
                     holdAssetsVO.setIncome(income);
-                    holdAssetsVO.setIncomeRate(holdAssetsVO.getHoldingCost().divide(bondVO.getBondPrice()).negate().doubleValue());
+                    holdAssetsVO.setIncomeRate(holdAssetsVO.getHoldingCost().divide(bondVO.getBondPrice(),0, BigDecimal.ROUND_HALF_UP).negate().doubleValue());
                     holdAssetsVOList.add(holdAssetsVO);
                 }
             }
@@ -87,13 +87,13 @@ public class HoldAssetsService {
         return holdAssets;
     }
 
-    public HashMap<String, BigDecimal> getAllAssetsValue() {
-        HashMap<String, BigDecimal> assetsValueMap = new HashMap<>();
+    public List<BigDecimal> getAllAssetsValue() {
+        List<BigDecimal> result = new ArrayList<>();
 
         List<HoldAssetsVO> allHoldAssets = getAllHoldAssets();
         //cash
         Cash cash = cashService.getCashById(1L);
-        assetsValueMap.put("cash", cash.getAmount());
+        result.add(cash.getAmount());
 
         //stock
         //bond
@@ -112,9 +112,9 @@ public class HoldAssetsService {
             }
         }
 
-        assetsValueMap.put("stock", stockValue);
-        assetsValueMap.put("bond", bondValue);
-        return assetsValueMap;
+        result.add(stockValue);
+        result.add(bondValue);
+        return result;
     }
 
     // Other service methods

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AssetsValue } from 'src/app/model/getAllAssetsValue';
 import {AllassetsvalueService} from 'src/app/services/allassetsvalue.service';
 
 

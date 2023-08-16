@@ -1,0 +1,10 @@
+table {
+    width: 100%;
+  }
+  
+  th {
+    text-align: left;
+  }
+  #TABLE {
+    transform: translateY(-300px);
+  }

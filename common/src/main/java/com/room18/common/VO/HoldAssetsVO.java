@@ -16,6 +16,8 @@ public class HoldAssetsVO {
 
     private String productionTypeName;
 
+    private String productName;
+
     private Long productionAmount;
 
     private BigDecimal holdingCost;

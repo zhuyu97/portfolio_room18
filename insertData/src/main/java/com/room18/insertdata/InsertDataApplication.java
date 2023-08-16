@@ -13,6 +13,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.ApplicationContext;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -25,42 +26,44 @@ import java.util.concurrent.Executors;
 @EnableEurekaClient
 @SpringBootApplication
 @EnableFeignClients
+@EnableScheduling
 @EntityScan(basePackages = "com.room18.common.entity")
 public class InsertDataApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(InsertDataApplication.class, args);
-        ApplicationContext context = SpringUtil.getApplicationContext();
-
-        ExecutorService executorService = Executors.newFixedThreadPool(2); // 设置线程池大小为5
-        Random random = new Random();
-        for (int i = 0; i < 1; i++) {
-            if (i == 0){
-                executorService.execute(() -> {
-                    StockFeignService stockFeignService = context.getBean(StockFeignService.class);
-                    R allStocks = stockFeignService.getAllStocks();
-                    List<StockVO> stockVOList = JSON.parseArray(JSON.toJSONString(allStocks.get("data")), StockVO.class);
-
-                    for (StockVO stockVO: stockVOList) {
-                        insertStockToDatabase(stockVO, stockFeignService, random);
-                    }
-                    try {
-                        Thread.sleep(1000); // 每秒钟插入一次
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                });
-            }
-        }
-    }
-
-    private static void insertStockToDatabase(StockVO stockVO, StockFeignService stockFeignService, Random random) {
-        BigDecimal diff = BigDecimal.valueOf(random.nextDouble() * 0.04 - 0.02);
-        BigDecimal stockPrice = stockVO.getStockPrice().add(diff);
-        LocalDateTime time = LocalDateTime.now().minusSeconds(1);
-        StockDetail stockDetail = new StockDetail();
-        BeanUtils.copyProperties(stockVO, stockDetail);
-        stockFeignService.createStockDetail(stockDetail);
-        System.out.println("插入记录： stockId=" + stockVO.getStockId() + ", stockPrice=" + stockPrice + ", time=" + time);
     }
 }
+//        ApplicationContext context = SpringUtil.getApplicationContext();
+//        StockFeignService stockFeignService = context.getBean(StockFeignService.class);
+//        ExecutorService executorService = Executors.newFixedThreadPool(2); // 设置线程池大小为5
+//        Random random = new Random();
+//        for (int i = 0; i < 1; i++) {
+//            if (i == 0){
+//                executorService.execute(() -> {
+//                    R allStocks = stockFeignService.getAllStocks();
+//                    List<StockVO> stockVOList = JSON.parseArray(JSON.toJSONString(allStocks.get("data")), StockVO.class);
+//
+//                    for (StockVO stockVO: stockVOList) {
+//                        insertStockToDatabase(stockVO, stockFeignService, random);
+//                    }
+//                    try {
+//                        Thread.sleep(1000); // 每秒钟插入一次
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                });
+//            }
+//        }
+//    }
+//
+//    private static void insertStockToDatabase(StockVO stockVO, StockFeignService stockFeignService, Random random) {
+//        BigDecimal diff = BigDecimal.valueOf(random.nextDouble() * 0.1 - 0.05);
+//        BigDecimal stockPrice = stockVO.getStockPrice().add(diff);
+//        LocalDateTime time = LocalDateTime.now().minusSeconds(1);
+//        StockDetail stockDetail = new StockDetail();
+//        BeanUtils.copyProperties(stockVO, stockDetail);
+//        stockFeignService.createStockDetail(stockDetail);
+//        System.out.println("插入记录： stockId=" + stockVO.getStockId() + ", stockPrice=" + stockPrice + ", time=" + time);
+//    }
+

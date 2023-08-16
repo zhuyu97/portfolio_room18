@@ -8,24 +8,24 @@ import org.springframework.web.bind.annotation.*;
 
 @FeignClient(name = "calnetworth")
 public interface NetWorthFeignService {
-    @GetMapping("/getAll")
+    @GetMapping("/api/networth/getAll")
     public R getAllNetWorths();
 
-    @PostMapping("/")
+    @PostMapping("/api/networth/")
     public R createNetWorth(@RequestBody NetWorth netWorth);
-    @GetMapping("/{netWorthId}")
+    @GetMapping("/api/networth/{netWorthId}")
     public R getNetWorthById(@PathVariable("netWorthId") Long id);
 
-    @PutMapping("/{netWorthId}")
+    @PutMapping("/api/networth/{netWorthId}")
     public R updateNetWorth(@PathVariable Long netWorthId, @RequestBody NetWorth netWorth);
 
-    @DeleteMapping("/{netWorthId}")
+    @DeleteMapping("/api/networth/{netWorthId}")
     public R deleteNetWorth(@PathVariable Long netWorthId);
 
-    @GetMapping("/networthnow")
+    @GetMapping("/api/networth/networthnow")
     public R getCurrentNetWorth();
 
-    @GetMapping("/calCurNetWorth")
+    @GetMapping("/api/networth/calCurNetWorth")
     public R calCurrentNetWorth();
 
 }

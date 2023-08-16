@@ -3,6 +3,7 @@ package com.room18.common.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Data
 @Entity
@@ -24,6 +25,10 @@ public class HoldAssets {
 
     @Column(name = "production_amount")
     private Long productionAmount;
+
+    //cheng ben
+    @Column(name = "cost")
+    private BigDecimal cost;
 
     // Getter and Setter methods
 }

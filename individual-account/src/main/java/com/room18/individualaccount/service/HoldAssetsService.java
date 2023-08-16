@@ -43,7 +43,13 @@ public class HoldAssetsService {
                     HoldAssetsVO holdAssetsVO = new HoldAssetsVO();
                     BeanUtils.copyProperties(holdAssets, holdAssetsVO);
                     holdAssetsVO.setProductionTypeName("Stock");
-                    holdAssetsVO.setTotalValue(stockVO.getStockPrice().multiply(BigDecimal.valueOf(holdAssetsVO.getProductionAmount())));
+                    holdAssetsVO.setHoldingCost(holdAssets.getCost().divide(BigDecimal.valueOf(holdAssetsVO.getProductionAmount())));
+                    BigDecimal curValue = stockVO.getStockPrice().multiply(BigDecimal.valueOf(holdAssetsVO.getProductionAmount()));
+                    BigDecimal income = curValue.subtract(holdAssets.getCost());
+                    holdAssetsVO.setIncome(income);
+                    holdAssetsVO.setIncomeRate(holdAssetsVO.getHoldingCost().divide(stockVO.getStockPrice())
+                            .negate()
+                            .doubleValue());
                     holdAssetsVOList.add(holdAssetsVO);
                 }
                 else {
@@ -52,7 +58,11 @@ public class HoldAssetsService {
                     HoldAssetsVO holdAssetsVO = new HoldAssetsVO();
                     BeanUtils.copyProperties(holdAssets, holdAssetsVO);
                     holdAssetsVO.setProductionTypeName("Bond");
-                    holdAssetsVO.setTotalValue(bondVO.getBondPrice().multiply(BigDecimal.valueOf(holdAssetsVO.getProductionAmount())));
+                    holdAssetsVO.setHoldingCost(holdAssets.getCost().divide(BigDecimal.valueOf(holdAssetsVO.getProductionAmount())));
+                    BigDecimal curValue = bondVO.getBondPrice().multiply(BigDecimal.valueOf(holdAssetsVO.getProductionAmount()));
+                    BigDecimal income = curValue.subtract(holdAssets.getCost());
+                    holdAssetsVO.setIncome(income);
+                    holdAssetsVO.setIncomeRate(holdAssetsVO.getHoldingCost().divide(bondVO.getBondPrice()).negate().doubleValue());
                     holdAssetsVOList.add(holdAssetsVO);
                 }
             }

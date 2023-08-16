@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Api(tags = "Cash data interface")
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/cash")
 public class CashController {
     @Autowired

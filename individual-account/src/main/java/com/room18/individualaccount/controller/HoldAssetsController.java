@@ -15,6 +15,7 @@ import java.util.List;
 
 @Api(tags = "Hold Assets data interface")
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/holdAssets")
 public class HoldAssetsController {
     @Autowired

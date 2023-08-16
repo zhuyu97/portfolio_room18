@@ -18,6 +18,7 @@ import java.util.List;
 
 @Api(tags = "Bond data interface")
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/bond")
 public class BondController {
     @Autowired

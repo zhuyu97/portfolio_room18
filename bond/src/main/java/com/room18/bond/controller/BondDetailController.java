@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Api(tags = "BondDetail data interface")
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/bondDetail")
 public class BondDetailController {
     @Autowired

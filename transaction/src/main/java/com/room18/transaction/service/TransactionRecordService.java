@@ -90,6 +90,7 @@ public class TransactionRecordService {
                 holdAssets.setProductionId(buyStockDTO.getStockId());
                 holdAssets.setProductionType(Constants.PRODUCTION_TYPE_STOCK);
                 holdAssets.setProductionAmount(buyStockDTO.getBuyAmount());
+                holdAssets.setCost(shouldCost);
 
                 R holdAssets1 = indAccountFeignService.createHoldAssets(holdAssets);
             }
@@ -97,6 +98,7 @@ public class TransactionRecordService {
             else {
                 HoldAssets holdAssets = JSON.parseObject(JSON.toJSONString(holdAssetsR.get("data")), HoldAssets.class);
                 holdAssets.setProductionAmount(holdAssets.getProductionAmount() + buyStockDTO.getBuyAmount());
+                holdAssets.setCost(holdAssets.getCost().add(shouldCost));
                 R r = indAccountFeignService.updateHoldAssets(holdAssets.getHoldAssetsId(), holdAssets);
             }
 
@@ -156,16 +158,17 @@ public class TransactionRecordService {
             return result;
         }
         else {
-            //update holdAssets
-            holdAssets.setProductionAmount(holdAssets.getProductionAmount() - sellStockDTO.getSellAmount());
-            R updateHoldAssetsR = indAccountFeignService.updateHoldAssets(holdAssets.getHoldAssetsId(), holdAssets);
-
             //update cash
             R cashR = indAccountFeignService.getCashById(1L);
             Cash cash = JSON.parseObject(JSON.toJSONString(cashR.get("data")), Cash.class);
             BigDecimal incomingFunds = BigDecimal.valueOf(sellStockDTO.getSellPrice() * sellStockDTO.getSellAmount());
             cash.setAmount(cash.getAmount().add(incomingFunds));
             indAccountFeignService.updateCash(1L, cash);
+
+            //update holdAssets
+            holdAssets.setProductionAmount(holdAssets.getProductionAmount() - sellStockDTO.getSellAmount());
+            holdAssets.setCost(holdAssets.getCost().subtract(incomingFunds));
+            R updateHoldAssetsR = indAccountFeignService.updateHoldAssets(holdAssets.getHoldAssetsId(), holdAssets);
 
 
             R stockDetailR = stockFeignService.findStockDetailByStockId(sellStockDTO.getStockId());
@@ -237,6 +240,7 @@ public class TransactionRecordService {
                 holdAssets.setProductionId(buyBondDTO.getBondId());
                 holdAssets.setProductionType(Constants.PRODUCTION_TYPE_BOND);
                 holdAssets.setProductionAmount(buyBondDTO.getBuyAmount());
+                holdAssets.setCost(shouldCost);
 
                 R holdAssets1 = indAccountFeignService.createHoldAssets(holdAssets);
             }
@@ -244,6 +248,7 @@ public class TransactionRecordService {
             else {
                 HoldAssets holdAssets = JSON.parseObject(JSON.toJSONString(holdAssetsR.get("data")), HoldAssets.class);
                 holdAssets.setProductionAmount(holdAssets.getProductionAmount() + buyBondDTO.getBuyAmount());
+                holdAssets.setCost(holdAssets.getCost().add(shouldCost));
                 R r = indAccountFeignService.updateHoldAssets(holdAssets.getHoldAssetsId(), holdAssets);
             }
 
@@ -297,16 +302,17 @@ public class TransactionRecordService {
             return result;
         }
         else {
-            //update holdAssets
-            holdAssets.setProductionAmount(holdAssets.getProductionAmount() - sellBondDTO.getSellAmount());
-            R updateHoldAssetsR = indAccountFeignService.updateHoldAssets(holdAssets.getHoldAssetsId(), holdAssets);
-
             //update cash
             R cashR = indAccountFeignService.getCashById(1L);
             Cash cash = JSON.parseObject(JSON.toJSONString(cashR.get("data")), Cash.class);
             BigDecimal incomingFunds = BigDecimal.valueOf(sellBondDTO.getSellPrice() * sellBondDTO.getSellAmount());
             cash.setAmount(cash.getAmount().add(incomingFunds));
             indAccountFeignService.updateCash(1L, cash);
+
+            //update holdAssets
+            holdAssets.setProductionAmount(holdAssets.getProductionAmount() - sellBondDTO.getSellAmount());
+            holdAssets.setCost(holdAssets.getCost().subtract(incomingFunds));
+            R updateHoldAssetsR = indAccountFeignService.updateHoldAssets(holdAssets.getHoldAssetsId(), holdAssets);
 
 
             R bondDetailR = bondFeignService.findBondDetailByBondId(sellBondDTO.getBondId());

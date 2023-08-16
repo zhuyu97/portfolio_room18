@@ -17,6 +17,7 @@ import java.util.HashMap;
 
 @Api(tags = "TransactionRecord data interface")
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/transactionRecord")
 public class TransactionRecordController {
     @Autowired

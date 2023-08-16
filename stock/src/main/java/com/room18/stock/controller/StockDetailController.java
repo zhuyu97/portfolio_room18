@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Api(tags = "StockDetail data interface")
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/stockDetails")
 public class StockDetailController {
     @Autowired

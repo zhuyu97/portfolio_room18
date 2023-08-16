@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.Column;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 @Data
 public class HoldAssetsVO {
@@ -17,5 +18,9 @@ public class HoldAssetsVO {
 
     private Long productionAmount;
 
-    private BigDecimal totalValue;
+    private BigDecimal holdingCost;
+
+    private BigDecimal income;
+
+    private double incomeRate;
 }

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/networth")
 public class NetWorthController {
     @Autowired
@@ -57,7 +58,5 @@ public class NetWorthController {
         NetWorth netWorth = netWorthService.calCurrentNetWorth();
         return R.ok().put("data", netWorth);
     }
-
-
     // Additional methods can be added based on your requirements
 }

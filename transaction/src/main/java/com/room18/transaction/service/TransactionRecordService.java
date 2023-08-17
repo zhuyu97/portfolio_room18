@@ -22,7 +22,6 @@ import java.util.HashMap;
 import java.util.List;
 
 @Service
-@Transactional
 public class TransactionRecordService {
     @Autowired
     private TransactionRecordDao transactionRecordDao;

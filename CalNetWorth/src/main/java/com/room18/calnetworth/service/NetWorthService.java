@@ -18,7 +18,6 @@ import java.util.HashMap;
 import java.util.List;
 
 @Service
-@Transactional
 public class NetWorthService {
     @Autowired
     private NetWorthDao netWorthDao;

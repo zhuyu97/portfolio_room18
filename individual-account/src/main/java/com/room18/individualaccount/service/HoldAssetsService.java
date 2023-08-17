@@ -20,7 +20,6 @@ import java.util.HashMap;
 import java.util.List;
 
 @Service
-@Transactional
 public class HoldAssetsService {
     @Autowired
     private HoldAssetsDao holdAssetsDao;

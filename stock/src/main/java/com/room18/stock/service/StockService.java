@@ -5,10 +5,12 @@ import com.room18.common.entity.Stock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class StockService {
     @Autowired
     private StockDao stockDao;

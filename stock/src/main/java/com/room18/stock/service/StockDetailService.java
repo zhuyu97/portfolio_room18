@@ -4,10 +4,12 @@ import com.room18.stock.dao.StockDetailDao;
 import com.room18.common.entity.StockDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class StockDetailService {
     @Autowired
     private StockDetailDao stockDetailDao;

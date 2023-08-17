@@ -9,13 +9,16 @@ import com.room18.common.entity.NetWorth;
 import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 @Service
+@Transactional
 public class NetWorthService {
     @Autowired
     private NetWorthDao netWorthDao;
@@ -46,12 +49,13 @@ public class NetWorthService {
 
     public NetWorth calCurrentNetWorth(){
         R allAssetsValueR = individualAccountFeignService.getAllAssetsValue();
-        HashMap<String, BigDecimal> allAssetsValueMap = JSON.parseObject(JSON.toJSONString(allAssetsValueR.get("data")), HashMap.class);
+        List<BigDecimal> allAssetsValueList = JSON.parseArray(JSON.toJSONString(allAssetsValueR.get("data")), BigDecimal.class);
         NetWorth netWorth = new NetWorth();
         BigDecimal totalValue = new BigDecimal(0);
-        totalValue = totalValue.add(allAssetsValueMap.get("cash"));
-        totalValue = totalValue.add(allAssetsValueMap.get("stock"));
-        totalValue = totalValue.add(allAssetsValueMap.get("bond"));
+        for(BigDecimal value: allAssetsValueList){
+            totalValue = totalValue.add(value);
+        }
+
 
         netWorth.setNetWorthValue(totalValue);
         netWorth.setTime(LocalDateTime.now());

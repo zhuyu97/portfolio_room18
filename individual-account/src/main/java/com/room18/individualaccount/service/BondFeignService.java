@@ -4,8 +4,8 @@ import com.room18.common.R;
 import com.room18.common.entity.Bond;
 import com.room18.common.entity.BondDetail;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-
 @FeignClient(name = "bond")
 public interface BondFeignService {
     @GetMapping("/api/bond/getAll")

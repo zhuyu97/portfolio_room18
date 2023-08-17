@@ -13,6 +13,7 @@ public interface NetWorthFeignService {
 
     @PostMapping("/api/networth/")
     public R createNetWorth(@RequestBody NetWorth netWorth);
+    
     @GetMapping("/api/networth/{netWorthId}")
     public R getNetWorthById(@PathVariable("netWorthId") Long id);
 

@@ -2,6 +2,7 @@ package com.room18.calnetworth.service;
 
 import com.room18.common.R;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @FeignClient(name = "individualaccount")

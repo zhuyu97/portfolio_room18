@@ -6,6 +6,7 @@ import com.room18.common.entity.StockDetail;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
+
 @FeignClient(name = "stock")
 public interface StockFeignService {
     @GetMapping("/api/stocks/getAll")

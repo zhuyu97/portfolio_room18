@@ -4,10 +4,12 @@ import com.room18.individualaccount.dao.CashDao;
 import com.room18.common.entity.Cash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class CashService {
     @Autowired
     private CashDao cashDao;

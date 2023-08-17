@@ -1,10 +1,10 @@
 table {
     width: 100%;
-  }
+}
   
-  th {
-    text-align: left;
-  }
-  #TABLE {
-    transform: translateY(-300px);
-  }
+th {
+  text-align: left;
+}
+#TABLE {
+  transform: translateY(-300px);
+}

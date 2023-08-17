@@ -9,15 +9,18 @@ import { ChartModule } from 'primeng/chart'
 import { HttpClientModule } from '@angular/common/http';
 import { AllHoldAssetsComponent } from './components/all-hold-assets/all-hold-assets.component';
 import { AllholdassetsService } from './services/allholdassets.service';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatTableModule} from '@angular/material/table';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatTableModule } from '@angular/material/table';
+import { Routes, RouterModule } from '@angular/router';
+import { LineChartComponent } from './components/line-chart/line-chart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     PieChartComponent,
-    AllHoldAssetsComponent
+    AllHoldAssetsComponent,
+    LineChartComponent
   ],
   imports: [
     BrowserModule,

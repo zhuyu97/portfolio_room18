@@ -16,6 +16,10 @@
       <mat-header-cell *matHeaderCellDef> productionTypeName </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.productionTypeName}} </mat-cell>
     </ng-container>
+    <ng-container matColumnDef="productName">
+      <mat-header-cell *matHeaderCellDef> productName </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.productName}} </mat-cell>
+    </ng-container>
     <ng-container matColumnDef="productionAmount">
       <mat-header-cell *matHeaderCellDef> productionAmount </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.productionAmount}} </mat-cell>

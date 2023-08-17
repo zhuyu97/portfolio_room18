@@ -7,6 +7,11 @@ import { LineChartComponent } from './components/line-chart/line-chart.component
 
 const routes: Routes = [
   {
+    path:'',
+    redirectTo:'home',
+    pathMatch:'full'
+  },
+  {
     path:'home',
     title: 'homepage',
     component:HomeComponent,

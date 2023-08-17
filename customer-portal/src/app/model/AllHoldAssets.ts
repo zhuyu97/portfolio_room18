@@ -6,6 +6,7 @@ export interface AllHoldAssets {
         userId: number,
         productionId: number,
         productionTypeName: string,
+        productName:string
         productionAmount: number,
         holdingCost: number,
         income: number,

@@ -15,7 +15,13 @@ export class LineChartComponent {
 
   ngOnInit(): void {
     this.get();
+
+    // setInterval(() => {
+    //   this.chart.destroy();
+    //   this.get();
+    // },1000)
   }
+
 
   constructor(private netWorthService: NetworthService) { }
   
@@ -29,7 +35,7 @@ export class LineChartComponent {
   }
 
   createChart(){
-
+    
     this.chart = new Chart("MyChart", {
       type: 'line', //this denotes tha type of chart
 

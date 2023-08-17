@@ -35,7 +35,7 @@ fetchAssets(){
     console.log('dataS', this.dataSource)
   })
 }
-  displayedColumns: string[] = ['holdAssetsId', 'userId', 'productionId', 'productionTypeName','productionAmount','holdingCost','income','incomeRate'];
+  displayedColumns: string[] = ['holdAssetsId', 'userId', 'productionId', 'productionTypeName','productName','productionAmount','holdingCost','income','incomeRate'];
 }
 
 

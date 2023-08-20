@@ -36,6 +36,13 @@
       <mat-header-cell *matHeaderCellDef> incomeRate </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.incomeRate}} </mat-cell>
     </ng-container>
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+      <mat-cell *matCellDef="let element"> 
+        <button mat-raised-button  (click)="openBuyDialog(element)" >Buy</button>
+        <button mat-raised-button  (click)="openSellDialog(element)" style="margin-left: 8px;" >Sell</button>
+      </mat-cell>
+    </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>

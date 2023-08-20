@@ -1,22 +1,5 @@
 #GFG {
-    transform: translateX(300px) translateY(-370px);
-  }
-
-h2 {
-    transform: translateX(90px) translateY(20px);
-}
-.box{
-  width:80%;
-  margin:0 auto;
-  overflow:hidden;
-}
-.box .left{
-  width:30%;
-  height:400px;
-  float:left;
-}
-.box .right{
-  width:70%;
-  height:400px;
-  float:left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

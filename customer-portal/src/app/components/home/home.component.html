@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>HomePage</title>
+</head>
+
+<body>
+  <div class="box">
+    <div class="left">
+      <ul>
+        <h2 class="centered-text">Main Menu</h2>
+        <li>
+          <img src="../../assets/home.png" alt="Icon" class="home"/>
+          <a href="#home">Home</a>
+        </li>
+        <li>
+          <img src="../../assets/info_personal.png" alt="Icon" class="home"/>
+          <a href="#Personal information">Personal information</a>
+        </li>
+        <li>
+          <img src="../../assets/stock.png" alt="Icon" class="stock"/>
+          <a href="../stock">Stock</a>
+        </li>
+        <li>
+          <img src="../../assets/bonds.png" alt="Icon" class="home"/>
+          <a href="#Bond">Bond</a>
+        </li>
+      </ul>
+    </div>
+    
+    <div class="center">
+      <app-pie-chart></app-pie-chart>
+    </div>
+
+    <div class="right">
+     <app-line-chart></app-line-chart>
+    </div>
+
+    <div class="table">
+      <app-all-hold-assets></app-all-hold-assets>
+    </div>
+
+</div>    
+</body>
+</html>

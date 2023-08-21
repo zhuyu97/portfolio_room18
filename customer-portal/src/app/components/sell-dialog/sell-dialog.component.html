@@ -1,0 +1,22 @@
+  <button mat-icon-button style="float: right; margin: 2px;" matDialogClose>
+    <mat-icon>close</mat-icon>
+  </button>
+  <mat-dialog-content>
+    <header>
+        <h2>Sell Stock</h2>
+    </header>
+    <p><mat-form-field>
+        <input matInput placeholder="stockId" [value]="sellproduction" readonly>
+    </mat-form-field></p>
+    <p><mat-form-field>
+        <input matInput placeholder="sellAmount" [(ngModel)]="sellAmount" sellAmount="sellAmount">
+    </mat-form-field></p>
+    <p><mat-form-field>
+      <input matInput placeholder="sellPrice" [(ngModel)]="sellPrice" sellAmount="sellPrice">
+  </mat-form-field></p>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" (click)="onSubmit()">Save</button>
+    <button mat-raised-button color="warn" matDialogClose>Cancel</button>
+  </mat-dialog-actions>
+  

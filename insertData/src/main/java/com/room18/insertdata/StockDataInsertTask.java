@@ -45,8 +45,8 @@ public class StockDataInsertTask {
     }
 
     private void insertStockToDatabase(StockVO stockVO) {
-        BigDecimal diff = BigDecimal.valueOf(random.nextDouble() * 0.1 - 0.05);
-        BigDecimal stockPrice = stockVO.getStockPrice().add(diff);
+        BigDecimal diff = BigDecimal.valueOf(random.nextDouble() * 0.01 - 0.005);
+        BigDecimal stockPrice = stockVO.getStockPrice().multiply(BigDecimal.valueOf(1).subtract(diff));
         LocalDateTime time = LocalDateTime.now().minusSeconds(1);
         StockDetail stockDetail = new StockDetail();
         BeanUtils.copyProperties(stockVO, stockDetail);

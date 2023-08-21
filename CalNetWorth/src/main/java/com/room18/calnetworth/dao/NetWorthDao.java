@@ -15,7 +15,7 @@ public interface NetWorthDao extends JpaRepository<NetWorth, Long> {
     @Query(value = "SELECT * FROM net_worth ORDER BY `time` DESC LIMIT 1",nativeQuery = true)
     public NetWorth getCurrentNetWorth();
 
-    @Query(value = "SELECT * FROM net_worth ORDER BY `time`",nativeQuery = true)
+    @Query(value = "SELECT * FROM net_worth  WHERE DATE(time) = CURDATE() ORDER BY `time` ASC",nativeQuery = true)
     public List<NetWorth> getAllNetWorthsOrderByTime();
 
 }

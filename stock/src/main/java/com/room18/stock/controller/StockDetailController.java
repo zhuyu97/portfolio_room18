@@ -7,7 +7,11 @@ import com.room18.stock.service.StockDetailService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 @Api(tags = "StockDetail data interface")
 @RestController
@@ -59,6 +63,18 @@ public class StockDetailController {
         }
         else {
             return R.error(404, "There is no stockDetail with the stockId.");
+        }
+
+    }
+
+    @GetMapping("/getStockHistory/{stockId}")
+    public R getTodayPricesByStockId(@PathVariable Long stockId){
+        List<BigDecimal> todayPrices = stockDetailService.getTodayPricesByStockId(stockId);
+        if(todayPrices.size() > 0){
+            return R.ok().put("data", todayPrices);
+        }
+        else {
+            return R.error(404, "There is no stock price history with the stockId.");
         }
 
     }

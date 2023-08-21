@@ -3,9 +3,11 @@ package com.room18.stock.service;
 import com.room18.stock.dao.StockDetailDao;
 import com.room18.common.entity.StockDetail;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -31,6 +33,10 @@ public class StockDetailService {
 
     public StockDetail findStockDetailByStockId(Long stockId){
         return stockDetailDao.findStockDetailByStockId(stockId);
+    }
+
+    public List<BigDecimal> getTodayPricesByStockId(Long stockId){
+        return stockDetailDao.getTodayPricesByStockId(stockId);
     }
 
 

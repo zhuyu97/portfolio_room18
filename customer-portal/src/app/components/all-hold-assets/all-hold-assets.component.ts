@@ -1,12 +1,10 @@
 import { AllHoldAssets } from './../../model/AllHoldAssets';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import {DataSource} from '@angular/cdk/collections';
-import {CdkTableModule} from '@angular/cdk/table';
-import {BehaviorSubject, Observable, subscribeOn} from 'rxjs';
-import {AllholdassetsService} from 'src/app/services/allholdassets.service';
+import { AllholdassetsService } from 'src/app/services/allholdassets.service';
 import { MatTableDataSource } from '@angular/material/table';
-
+import { BuyDialogComponent } from '../buy-dialog/buy-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { SellDialogComponent } from '../sell-dialog/sell-dialog.component';
 
 
 
@@ -20,22 +18,37 @@ export class AllHoldAssetsComponent {
   title = 'matTableFromApi';
   listAllHoldAssets!: AllHoldAssets[];
 
-  constructor(private dataService: AllholdassetsService) { }
+  constructor(private dataService: AllholdassetsService,private matDialog:MatDialog) { }
 
   ngOnInit() {
     this.fetchAssets()
   }
-dataSource: any;
+  dataSource: any;
 
-fetchAssets(){
-  this.dataService.getAllAssetsValue().subscribe(res=>{
-    this.listAllHoldAssets = res.data
-    this.dataSource = new MatTableDataSource(this.listAllHoldAssets)
-    console.log('list of AllHoldAssets', this.listAllHoldAssets)
-    console.log('dataS', this.dataSource)
-  })
-}
-  displayedColumns: string[] = ['holdAssetsId', 'userId', 'productionId', 'productionTypeName','productName','productionAmount','holdingCost','income','incomeRate'];
+  fetchAssets(){
+    this.dataService.getAllAssetsValue().subscribe(res=>{
+      this.listAllHoldAssets = res.data
+      this.dataSource = new MatTableDataSource(this.listAllHoldAssets)
+    })
+  }
+  displayedColumns: string[] = ['holdAssetsId', 'userId', 'productionId', 'productionTypeName','productName','productionAmount','holdingCost','income','incomeRate','action'];
+
+  refreshAssets() {
+    this.fetchAssets()
+  }
+
+  openBuyDialog(element : any) {
+    this.matDialog.open(BuyDialogComponent,{
+      width:'350px',
+      data: element
+    });
+  }
+  openSellDialog(element : any) {
+    this.matDialog.open(SellDialogComponent,{
+      width:'350px',
+      data: element
+    })
+  }
 }
 
 

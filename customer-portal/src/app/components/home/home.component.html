@@ -6,8 +6,8 @@
 </head>
 
 <body>
-
-    <div>
+  <div class="box">
+    <div class="left">
       <ul>
         <h2 class="centered-text">Main Menu</h2>
         <li>
@@ -20,7 +20,7 @@
         </li>
         <li>
           <img src="../../assets/stock.png" alt="Icon" class="stock"/>
-          <a href="#Stock">Stock</a>
+          <a href="../stock">Stock</a>
         </li>
         <li>
           <img src="../../assets/bonds.png" alt="Icon" class="home"/>
@@ -28,14 +28,19 @@
         </li>
       </ul>
     </div>
-
-    <div>
+    
+    <div class="center">
       <app-pie-chart></app-pie-chart>
+    </div>
+
+    <div class="right">
+     <app-line-chart></app-line-chart>
+    </div>
+
+    <div class="table">
       <app-all-hold-assets></app-all-hold-assets>
     </div>
-    <div>
-      <app-line-chart></app-line-chart>
-    </div>
 
+</div>    
 </body>
 </html>

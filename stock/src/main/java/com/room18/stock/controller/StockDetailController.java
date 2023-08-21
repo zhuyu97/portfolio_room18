@@ -69,7 +69,7 @@ public class StockDetailController {
 
     @GetMapping("/getStockHistory/{stockId}")
     public R getTodayPricesByStockId(@PathVariable Long stockId){
-        List<BigDecimal> todayPrices = stockDetailService.getTodayPricesByStockId(stockId);
+        List<StockDetail> todayPrices = stockDetailService.getTodayPricesByStockId(stockId);
         if(todayPrices.size() > 0){
             return R.ok().put("data", todayPrices);
         }

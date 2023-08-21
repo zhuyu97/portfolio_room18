@@ -1,5 +1,6 @@
 package com.room18.stock.service;
 
+import com.room18.common.VO.StockVO;
 import com.room18.stock.dao.StockDetailDao;
 import com.room18.common.entity.StockDetail;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class StockDetailService {
         return stockDetailDao.findStockDetailByStockId(stockId);
     }
 
-    public List<BigDecimal> getTodayPricesByStockId(Long stockId){
+    public List<StockDetail> getTodayPricesByStockId(Long stockId){
         return stockDetailDao.getTodayPricesByStockId(stockId);
     }
 

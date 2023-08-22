@@ -1,4 +1,4 @@
-FROM amazoncorretto:8
+FROM openjdk:8
 
 ADD target/eurekaServer.jar webapp.jar
 

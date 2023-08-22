@@ -1,6 +1,6 @@
 FROM openjdk:8
 
-ADD target/eurekaServer.jar webapp.jar
+ADD eurekaServer/target/eurekaServer.jar webapp.jar
 
 EXPOSE 7001
 

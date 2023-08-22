@@ -1,0 +1,23 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: phpmyadmin
+spec:
+  replicas: 1
+  selector:
+    app: phpmyadmin
+  template:
+    metadata:
+      labels:
+        app: phpmyadmin
+    spec:
+      containers:
+        - name: phpmyadmin
+          image: bitnami/phpmyadmin
+          ports:
+            - containerPort: 80
+          env:
+            - name: PMA_HOST
+              value: mysql-service   # MySQL服务的Service名称
+            - name: PMA_PORT
+              value: "3306"         # MySQL服务的端口号

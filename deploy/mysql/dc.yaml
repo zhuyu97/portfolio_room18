@@ -1,0 +1,29 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: mysql
+  labels:
+    app: mysql
+spec:
+  replicas: 1
+  selector:
+    app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: registry.redhat.io/rhscl/mysql-80-rhel7
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: c0nygre
+            - name: MYSQL_DATABASE
+              value: portfolio
+            - name: MYSQL_USER
+              value: sa
+            - name: MYSQL_PASSWORD
+              value: "12345"
+          ports:
+            - containerPort: 3306

@@ -14,8 +14,8 @@ eureka:
 spring:
   datasource:
     username: root
-    password: mysql
-    url: jdbc:mysql://localhost:3306/portfolio?serverTimezone=UTC
+    password: c0nygre123
+    url: jdbc:mysql://sh-cdb-jq9aa8oy.sql.tencentcdb.com:63528/portfolio?serverTimezone=UTC
 
   jpa:
     properties:
